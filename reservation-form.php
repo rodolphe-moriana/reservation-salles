@@ -74,20 +74,22 @@ session_start();
         $value=mysqli_fetch_assoc($query);
         $_SESSION['id']=$value['id'];
 
-        $dated=$_POST['date']." ".$_POST['heure-debut'].':00';
-        $datef=$_POST['date']." ".$_POST['heure-fin'].':00';
-        $titre=$_POST['titre'];
-        $desc=$_POST['description'];
-        $id=$_SESSION['id'];
-
         if(isset($titre) && isset($desc) && isset($dated) && isset($datef) && isset($id)){
+
+            $dated=$_POST['date']." ".$_POST['heure-debut'].':00';
+            $datef=$_POST['date']." ".$_POST['heure-fin'].':00';
+            $titre=$_POST['titre'];
+            $desc=$_POST['description'];
+            $id=$_SESSION['id'];
+
+        if($dated<$datef){
             
         $request2="INSERT INTO `reservations`(`titre`, `description`, `debut`, `fin`, `id_utilisateur`) VALUES ('$titre','$desc','$dated','$datef',$id)";
         $query2= mysqli_query($db,$request2);
 
         header('location:planning.php');
         }
-
+        }
         
 
         ?>
