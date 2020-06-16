@@ -15,7 +15,7 @@ session_start();
 
     <body>
         
-        <header>
+    <header>
             <section>
 
                 <?php
@@ -27,7 +27,7 @@ session_start();
                 <nav>
                 <ul>
                     <li><a href='index.php'>Accueil</a></li>
-                    <li><a href='discussion.php'>Chat</a></li>
+                    <li><a href='planning.php'>Planning</a></li>
                     <li><a href='profil.php'>Profil</a></li>
                     <li><a href='logout.php'>Déconnexion</a></li>
                 </ul>
@@ -41,7 +41,7 @@ session_start();
                     <nav>
                     <ul>
                         <li><a href='index.php'>Accueil</a></li>
-                        <li><a href='discussion.php'>Chat</a></li>
+                        <li><a href='planning.php'>Planning</a></li>
                         <li><a href='profil.php'>Profil</a></li>
                         <li><a href='admin.php'>Admin</a></li>
                         <li><a href='logout.php'>Déconnexion</a></li>

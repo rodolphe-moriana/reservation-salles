@@ -20,7 +20,7 @@ else{
 
     <body>
         
-        <header>
+    <header>
             <section>
 
                 <?php
@@ -32,7 +32,7 @@ else{
                 <nav>
                 <ul>
                     <li><a href='index.php'>Accueil</a></li>
-                    <li><a href='discussion.php'>Chat</a></li>
+                    <li><a href='planning.php'>Planning</a></li>
                     <li><a href='profil.php'>Profil</a></li>
                     <li><a href='logout.php'>Déconnexion</a></li>
                 </ul>
@@ -46,7 +46,7 @@ else{
                     <nav>
                     <ul>
                         <li><a href='index.php'>Accueil</a></li>
-                        <li><a href='discussion.php'>Chat</a></li>
+                        <li><a href='planning.php'>Planning</a></li>
                         <li><a href='profil.php'>Profil</a></li>
                         <li><a href='admin.php'>Admin</a></li>
                         <li><a href='logout.php'>Déconnexion</a></li>
