@@ -104,16 +104,6 @@ if(isset($_SESSION['login'])){
 
             <h1>Ajout d'évenement</h1><br>
 
-            <p>
-
-            <?php
-
-            
-
-            ?>
-
-            </p>
-
             <label for="titre">Titre<span>*</span> :</label><br>
             <input id="form-text" type="text" name="titre">
                 
