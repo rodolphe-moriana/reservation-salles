@@ -69,6 +69,8 @@ if(isset($_SESSION['login'])){
         <main>
         <section class='main-article form-input' id='profil-article'>
 
+        <div class="form-style" id="form-inscri">
+
         <?php
 
             if(isset($_GET['id'])){
@@ -92,29 +94,29 @@ if(isset($_SESSION['login'])){
                 }
                 echo "<h1>Résumé de l'évenement</h1><br>
 
-                <div>Créé par<span>*</span> :</div><br>
-                <div>".$nom."</div>
+                <div id='form-text'>Créé par<span>*</span> :</div><br>
+                <div id='form-text'>".$nom."</div><br>
 
-                <div>Titre<span>*</span> :</div><br>
-                <div>".$titre."</div>
+                <div id='form-text'>Titre<span>*</span> :</div><br>
+                <div id='form-text'>".$titre."</div><br>
                     
-                <div for='description'>Description<span>*</span> :</div><br>
-                <div>".$desc."</div>
+                <div id='form-text' for='description'>Description<span>*</span> :</div><br>
+                <div id='form-text'>".$desc."</div><br>
     
-                <div for='heure-debut'>De<span>*<span> :</div>
-                <div>".$dated."</div>
+                <div id='form-text' for='heure-debut'>De<span>*<span> :</div><br>
+                <div id='form-text'>".$dated."</div><br>
                 
-                <div for='heure-fin'>A <span>*<span> :</div>
-                <div>".$datef."</div>
+                <div id='form-text' for='heure-fin'>A <span>*<span> :</div><br>
+                <div id='form-text'>".$datef."</div><br>
                 
                 <br><br>";
             }
             else{
-                echo "<div>Il n'y a pas d'informations pour cette cellule</div>";
+                echo "<div id='form-text'>Il n'y a pas d'informations pour cette cellule</div>";
             }
 
         ?>
-
+        </div>
         </section>
         </main>
     </body>

@@ -485,3 +485,12 @@ header nav ul li a:hover{
 .case_vide{
     visibility:hidden;
 }
+
+a{
+    text-decoration: none;
+}
+
+.text_planning{
+    text-align: center;
+    color: rgb(170, 169, 169);
+}

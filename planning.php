@@ -85,22 +85,22 @@ session_start();
                     $db = mysqli_connect("localhost","root","","reservationsalles");
 
                     while(($heure>7) && ($heure<19)){
-                        echo '<tr><td>'.$heure;
+                        echo "<tr><td class='centre_txt'>".$heure;
                         while(($jour>=0) && ($jour<5)){
                             $numSemaine= date('W')-2;
-                            $timeStart = strtotime("First sunday January 2020 + ".$numSemaine." Week +". $jour ." day");
+                            $timeStart = strtotime("First sunday January 2020 + ".$numSemaine." Week +". ($jour+1) ." day");
                             $dateStart = date('Y-m-d',$timeStart);
                             $date=$dateStart.' '.$heure.':00';
                             $request="SELECT R.*,U.login FROM `reservations` as R INNER JOIN utilisateurs as U ON R.id_utilisateur=U.id WHERE `debut`='$date'";
                             $query= mysqli_query($db,$request);
                                 if(mysqli_num_rows($query)!=0){
                                     $cont=mysqli_fetch_assoc($query);
-                                    echo "<td><a href='http://localhost/reservation-salles/reservation.php?id=". $cont['id'] ."'>".$cont['login'].$cont['titre'].'</a></td>';
+                                    echo "<td class='centre_txt'><a href='http://localhost/reservation-salles/reservation.php?id=". $cont['id'] ."'><p class='text_planning'>".$cont['login']."</p><br><p class='text_planning'>".$cont['titre'].'</p></a></td>';
                                 }
                                 else{
                                     echo "<td><a href='reservation-form.php'><p class='case_vide'>Lien de résa</p></a></td>";
                                 }
-                            $jour++;
+                            $jour++.-1;
                         }
                         $jour=0;
                         echo '</td></tr>';
