@@ -73,7 +73,8 @@ session_start();
                     <?php
 
                     if(isset($_SESSION['login'])){
-                        $con = mysqli_connect('localhost','root','','discussion');
+
+                        $con = mysqli_connect('localhost','root','','reservationsalles');
                         $query = "SELECT `login` FROM `utilisateurs` WHERE  `login`='$_SESSION[login]'";
                         $result2 = mysqli_query($con, $query);
                         $value = mysqli_fetch_assoc($result2);

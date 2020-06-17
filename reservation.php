@@ -74,7 +74,7 @@ if(isset($_SESSION['login'])){
             if(isset($_GET['id'])){
                 $id=$_GET['id'];
                 $db = mysqli_connect('localhost','root','','reservationsalles');
-                $request="SELECT * FROM `reservations` WHERE `id`=".$id;
+                $request="SELECT R.*,U.login FROM `reservations` as R INNER JOIN utilisateurs as U ON R.id_utilisateur=U.id WHERE R.id=".$id;
                 $query= mysqli_query($db,$request);
                 if(mysqli_num_rows($query)!=0){
                     $value=mysqli_fetch_assoc($query);
@@ -82,6 +82,7 @@ if(isset($_SESSION['login'])){
                     $desc=$value['description'];
                     $dated=$value['debut'];
                     $datef=$value['fin'];
+                    $nom=$value['login'];
                 }
                 else{
                     $titre='';
@@ -92,7 +93,7 @@ if(isset($_SESSION['login'])){
                 echo "<h1>Résumé de l'évenement</h1><br>
 
                 <div>Créé par<span>*</span> :</div><br>
-                <div></div>
+                <div>".$nom."</div>
 
                 <div>Titre<span>*</span> :</div><br>
                 <div>".$titre."</div>

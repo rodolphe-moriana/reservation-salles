@@ -87,7 +87,7 @@ if(! $con){
 	die("Error  : ". mysql_error());
 }
 
-mysqli_select_db($con,'discussion');
+mysqli_select_db($con,'reservationsalles');
 
 $sql_query = "SELECT `login` FROM `utilisateurs` WHERE login='$_POST[login]'";
 $result = mysqli_query($con,$sql_query);

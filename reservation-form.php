@@ -70,39 +70,49 @@ if(isset($_SESSION['login'])){
         </header>
         <main>
 
+
         <?php
-
-        $db = mysqli_connect("localhost","root","","reservationsalles");
-        $request="SELECT `id` FROM `utilisateurs` WHERE `login`='$_SESSION[login]'";
-        $query= mysqli_query($db,$request);
-        $value=mysqli_fetch_assoc($query);
-        $_SESSION['id']=$value['id'];
-
-        if(isset($titre) && isset($desc) && isset($dated) && isset($datef) && isset($id)){
-
-            $dated=$_POST['date']." ".$_POST['heure-debut'].':00';
-            $datef=$_POST['date']." ".$_POST['heure-fin'].':00';
-            $titre=$_POST['titre'];
-            $desc=$_POST['description'];
-            $id=$_SESSION['id'];
-
-        if($dated<$datef){
-            
-        $request2="INSERT INTO `reservations`(`titre`, `description`, `debut`, `fin`, `id_utilisateur`) VALUES ('$titre','$desc','$dated','$datef',$id)";
-        $query2= mysqli_query($db,$request2);
-
-        header('location:planning.php');
-        }
-        }
         
+        if(isset($_POST['titre']) && isset($_POST['description']) && isset($_POST['date']) && isset($_POST['heure-debut']) && isset($_POST['heure-fin'])){
 
-        ?>
+            if($_POST['heure-fin']==($_POST['heure-debut']+1)){
+
+            $dated=$_POST['date']." ".$_POST['heure-debut'].':00:00';
+            $datef=$_POST['date']." ".$_POST['heure-fin'].':00:00';
+            $titre=addslashes($_POST['titre']);
+            $desc=addslashes($_POST['description']);
+            $id=$_SESSION['id'];
+            
+            $db = mysqli_connect("localhost","root","","reservationsalles");
+            $request2="INSERT INTO `reservations`(`titre`, `description`, `debut`, `fin`, `id_utilisateur`) VALUES ('$titre','$desc','$dated','$datef',$id)";
+            $query2= mysqli_query($db,$request2);
+
+            header('location:planning.php');
+        
+            } 
+            
+            else{
+                echo "Vous pouvez uniquement réserver des créneaux d'une heure.";
+                }
+            }
+            
+            ?>
 
             <section class="main-article form-input" id="main-article">
 
             <form class="form-style" id="form-inscri" method="post" action="">
 
             <h1>Ajout d'évenement</h1><br>
+
+            <p>
+
+            <?php
+
+            
+
+            ?>
+
+            </p>
 
             <label for="titre">Titre<span>*</span> :</label><br>
             <input id="form-text" type="text" name="titre">
@@ -114,10 +124,37 @@ if(isset($_SESSION['login'])){
             <input type="date" name="date" id="date_debut" required>
 
             <label for="heure-debut">De<span>*<span> :</label>
-            <input type="time" name="heure-debut" id="heure-debut" step="3600" min="08:00:00" max="18:00:00" required>
+            <select name="heure-debut" id="heure-debut" required>
+                <option value="08">08 H</option>
+                <option value="09">09 H</option>
+                <option value="10">10 H</option>
+                <option value="11">11 H</option>
+                <option value="12">12 H</option>
+                <option value="13">13 H</option>
+                <option value="14">14 H</option>
+                <option value="15">15 H</option>
+                <option value="16">16 H</option>
+                <option value="17">17 H</option>
+                <option value="18">18 H</option>
+
+            </select>
+            
             
             <label for="heure-fin">A <span>*<span> :</label>
-            <input type="time" name="heure-fin" id="heure-fin" step="3600" min="09:00:00" max="19:00:00" required>
+            <select name="heure-fin" id="heure-fin" required>
+                <option value="09">09 H</option>
+                <option value="10">10 H</option>
+                <option value="11">11 H</option>
+                <option value="12">12 H</option>
+                <option value="13">13 H</option>
+                <option value="14">14 H</option>
+                <option value="15">15 H</option>
+                <option value="16">16 H</option>
+                <option value="17">17 H</option>
+                <option value="18">18 H</option>
+                <option value="19">19 H</option>
+
+            </select>
             
             <br><br>
 

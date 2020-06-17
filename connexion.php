@@ -80,7 +80,7 @@ if ((!empty($_POST['login'])) && (!empty($_POST['password'])))
 
 
 
-    $con = mysqli_connect('localhost','root','','discussion');
+    $con = mysqli_connect('localhost','root','','reservationsalles');
 
 
 if(! $con){
@@ -93,11 +93,13 @@ $result = mysqli_query($con, $sql);
 if ($result)
 {
   $row = mysqli_num_rows($result);
+  $fetch = mysqli_fetch_assoc($result);
 
   if ($row)
     {
         $_SESSION['login']=$_POST['login'];
         $login=$_SESSION['login'];
+        $_SESSION['id']=$fetch['id'];
         header("location:index.php");
     }else echo "Login ou mot de passe incorrect";
 

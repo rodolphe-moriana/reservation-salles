@@ -91,11 +91,11 @@ session_start();
                             $timeStart = strtotime("First sunday January 2020 + ".$numSemaine." Week +". $jour ." day");
                             $dateStart = date('Y-m-d',$timeStart);
                             $date=$dateStart.' '.$heure.':00';
-                            $request="SELECT * FROM `reservations` WHERE `debut`='$date' ";
+                            $request="SELECT R.*,U.login FROM `reservations` as R INNER JOIN utilisateurs as U ON R.id_utilisateur=U.id WHERE `debut`='$date'";
                             $query= mysqli_query($db,$request);
                                 if(mysqli_num_rows($query)!=0){
                                     $cont=mysqli_fetch_assoc($query);
-                                    echo "<td><a href='http://localhost/reservation-salles/reservation.php?id=". $cont['id'] ."'>".$_SESSION['login'].$cont['titre'].'</a></td>';
+                                    echo "<td><a href='http://localhost/reservation-salles/reservation.php?id=". $cont['id'] ."'>".$cont['login'].$cont['titre'].'</a></td>';
                                 }
                                 else{
                                     echo "<td><a href='reservation-form.php'><p class='case_vide'>Lien de résa</p></a></td>";

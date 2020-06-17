@@ -73,7 +73,7 @@ session_start();
 <?php
  if(isset($_SESSION['login'])){
 
-$con = mysqli_connect('localhost','root','','discussion');
+$con = mysqli_connect('localhost','root','','reservationsalles');
 $query = "SELECT * FROM `utilisateurs` WHERE  `login`='$_SESSION[login]'";
 $result2 = mysqli_query($con, $query);
 
@@ -90,7 +90,7 @@ if(empty($login) || empty($password))
 }else
 {
 
-    $con = mysqli_connect('localhost','root','','discussion');
+    $con = mysqli_connect('localhost','root','','reservationsalles');
 
     $sql = "UPDATE `utilisateurs` SET `login`='$login',`password`='$password' WHERE login = '$_SESSION[login]'";
     $result = mysqli_query($con, $sql);
