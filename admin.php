@@ -14,7 +14,7 @@ else{
     <head>
         <title>Admin</title>
         <meta charset="UTF-8">
-        <link rel="stylesheet" href="css/discussion.css">
+        <link rel="stylesheet" href="css/agenda.css">
         <link href="https://fonts.googleapis.com/css2?family=Chivo&family=Noto+Sans+JP&display=swap" rel="stylesheet">
     </head>
 

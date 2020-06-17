@@ -2,15 +2,17 @@
 
 session_start();
 
+if(isset($_SESSION['login'])){
+
 ?>
 
 
 <html>
     <head>
         <title>Réservation</title>
-        <meta charset="UTF-8">
-        <link rel="stylesheet" href="css/discussion.css">
-        <link href="https://fonts.googleapis.com/css2?family=Chivo&family=Noto+Sans+JP&display=swap" rel="stylesheet">
+        <meta charset='UTF-8'>
+        <link rel='stylesheet' href='css/agenda.css'>
+        <link href='https://fonts.googleapis.com/css2?family=Chivo&family=Noto+Sans+JP&display=swap' rel='stylesheet'>
     </head>
 
     <body>
@@ -65,20 +67,64 @@ session_start();
             </section>
         </header>
         <main>
+        <section class='main-article form-input' id='profil-article'>
 
         <?php
 
-        $db = mysqli_connect("localhost","root","","livreor");
+            if(isset($_GET['id'])){
+                $id=$_GET['id'];
+                $db = mysqli_connect('localhost','root','','reservationsalles');
+                $request="SELECT * FROM `reservations` WHERE `id`=".$id;
+                $query= mysqli_query($db,$request);
+                if(mysqli_num_rows($query)!=0){
+                    $value=mysqli_fetch_assoc($query);
+                    $titre=$value['titre'];
+                    $desc=$value['description'];
+                    $dated=$value['debut'];
+                    $datef=$value['fin'];
+                }
+                else{
+                    $titre='';
+                    $desc='';
+                    $dated='';
+                    $datef='';
+                }
+                echo "<h1>Résumé de l'évenement</h1><br>
 
-        $request="SELECT C.commentaire,C.date,U.login FROM commentaires as C INNER JOIN utilisateurs as U ON C.id_utilisateur=U.id ORDER BY C.date desc";
-        $query=mysqli_query($db,$request);
+                <div>Créé par<span>*</span> :</div><br>
+                <div></div>
 
-        echo "<table id='table-livre'><thead><th colspan='2' id='thead-txt'>Vos Commentaires</th></thead><tbody>";
-
-        while($value=mysqli_fetch_assoc($query)){
-
-        echo "<tr><td id='left-livre'><p>Posté le : <p>".$value["date"]."<p> par </p>".$value["login"]."</td>";
-        echo "<td id='right-livre'>".$value["commentaire"]."</td></tr>";
-        }
+                <div>Titre<span>*</span> :</div><br>
+                <div>".$titre."</div>
+                    
+                <div for='description'>Description<span>*</span> :</div><br>
+                <div>".$desc."</div>
+    
+                <div for='heure-debut'>De<span>*<span> :</div>
+                <div>".$dated."</div>
+                
+                <div for='heure-fin'>A <span>*<span> :</div>
+                <div>".$datef."</div>
+                
+                <br><br>";
+            }
+            else{
+                echo "<div>Il n'y a pas d'informations pour cette cellule</div>";
+            }
 
         ?>
+
+        </section>
+        </main>
+    </body>
+</html>
+
+<?php 
+
+}
+
+else{
+    header('location:connexion.php');
+}
+
+?>

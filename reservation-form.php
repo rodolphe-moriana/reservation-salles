@@ -2,14 +2,18 @@
 
 session_start();
 
+if(isset($_SESSION['login'])){
+
+
+
 ?>
 
 
 <html>
     <head>
-        <title>Réservation</title>
+        <title>Réserver</title>
         <meta charset="UTF-8">
-        <link rel="stylesheet" href="css/discussion.css">
+        <link rel="stylesheet" href="css/agenda.css">
         <link href="https://fonts.googleapis.com/css2?family=Chivo&family=Noto+Sans+JP&display=swap" rel="stylesheet">
     </head>
 
@@ -125,3 +129,13 @@ session_start();
 
         </body>
 </html>
+
+<?php 
+
+}
+
+else{
+    header("location:connexion.php");
+}
+
+?>

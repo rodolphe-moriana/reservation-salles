@@ -9,7 +9,7 @@ session_start();
     <head>
         <title>Planning</title>
         <meta charset="UTF-8">
-        <link rel="stylesheet" href="css/discussion.css">
+        <link rel="stylesheet" href="css/agenda.css">
         <link href="https://fonts.googleapis.com/css2?family=Chivo&family=Noto+Sans+JP&display=swap" rel="stylesheet">
     </head>
 
@@ -23,7 +23,6 @@ session_start();
                 if(isset($_SESSION['login']) && ($_SESSION['login']!='admin')) {
     
                     echo "
-
                 <nav>
                 <ul>
                     <li><a href='index.php'>Accueil</a></li>
@@ -32,12 +31,10 @@ session_start();
                     <li><a href='logout.php'>Déconnexion</a></li>
                 </ul>
                 </nav>
-
                  ";}
                  elseif(isset($_SESSION['login']) && ($_SESSION['login']=='admin')) {
                     
                     echo "
-
                     <nav>
                     <ul>
                         <li><a href='index.php'>Accueil</a></li>
@@ -51,7 +48,6 @@ session_start();
                      ";}
                 else{
                     echo "
-
                 <nav>
                 <ul>
                     <li><a href='index.php'>Accueil</a></li>
@@ -59,7 +55,6 @@ session_start();
                     <li><a href='connexion.php'>Connexion</a></li>
                 </ul>
                 </nav>
-
                  ";} ?>
     
             </section>
@@ -68,22 +63,47 @@ session_start();
 
             <section class="main-article form-input" id="main-article">
 
-            <table id='table-livre'><thead><th colspan='8' id='thead-txt'>Planning de la semaine</th></thead>
+            <table id='table-livre'><thead><th colspan='8' id='thead-txt'>Planning de la semaine  
+            
+                <?php 
+                       
+                echo date('W');
+
+                ?>
+             
+                </th>
+                <tr>
+                <th id='inv'></th><th>Lundi</th><th>Mardi</th><th>Mercredi</th><th>Jeudi</th><th>Vendredi</th>
+            </thead>
             <tbody>
             
             <?php
 
-                    $jour=1;
+                    $jour=0;
                     $heure=8;
 
+                    $db = mysqli_connect("localhost","root","","reservationsalles");
+
                     while(($heure>7) && ($heure<19)){
-                        echo '<tr>';
-                        while(($jour>0) && ($jour<6)){
-                            echo '<td id='.$jour.'-'.$heure.'></td>';
+                        echo '<tr><td>'.$heure;
+                        while(($jour>=0) && ($jour<5)){
+                            $numSemaine= date('W')-2;
+                            $timeStart = strtotime("First sunday January 2020 + ".$numSemaine." Week +". $jour ." day");
+                            $dateStart = date('Y-m-d',$timeStart);
+                            $date=$dateStart.' '.$heure.':00';
+                            $request="SELECT * FROM `reservations` WHERE `debut`='$date' ";
+                            $query= mysqli_query($db,$request);
+                                if(mysqli_num_rows($query)!=0){
+                                    $cont=mysqli_fetch_assoc($query);
+                                    echo "<td><a href='http://localhost/reservation-salles/reservation.php?id=". $cont['id'] ."'>".$_SESSION['login'].$cont['titre'].'</a></td>';
+                                }
+                                else{
+                                    echo "<td><a href='reservation-form.php'><p class='case_vide'>Lien de résa</p></a></td>";
+                                }
                             $jour++;
                         }
-                        $jour=1;
-                        echo '</tr>';
+                        $jour=0;
+                        echo '</td></tr>';
                         $heure++;
                     }
 

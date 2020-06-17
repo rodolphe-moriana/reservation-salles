@@ -7,9 +7,9 @@ session_start();
 
 <html>
     <head>
-        <title>Chat & Co</title>
+        <title>L'Agenda</title>
         <meta charset="UTF-8">
-        <link rel="stylesheet" href="css/discussion.css">
+        <link rel="stylesheet" href="css/agenda.css">
         <link href="https://fonts.googleapis.com/css2?family=Chivo&family=Noto+Sans+JP&display=swap" rel="stylesheet">
     </head>
 
@@ -78,12 +78,12 @@ session_start();
                         $result2 = mysqli_query($con, $query);
                         $value = mysqli_fetch_assoc($result2);
                         echo "<p>Bonjour ".$value['login']." et bienvenue sur :</p>
-                                <h1 id='titre-co'>Chat & Co</h1>
-                                <h2 id='sous-titre-co'>Venez Discuter !</h2>";
+                                <h1 id='titre-co'>L'Agenda</h1>
+                                <h2 id='sous-titre-co'>Réserve ton créneau</h2>";
                     }
                     else{
-                        echo "<h1 id='titre-no-co'>Chat & Co</h1>
-                                <h2 id='sous-titre-no-co'>Venez Discuter !</h2>";
+                        echo "<h1 id='titre-no-co'>L'Agenda</h1>
+                                <h2 id='sous-titre-no-co'>Réserve ton créneau</h2>";
                     }
                     ?>
                 </div>
@@ -91,9 +91,9 @@ session_start();
             <section class="main-article">
                 <div id="art-gauche">
                     <h3>Se connecter</h3><br>
-                    <p>Accédez à votre espace perso afin de communiquer avec vos amis présents sur le site. </p><br>
-                    <iframe width="560" height="315" src="https://www.youtube.com/embed/eDz0nmQM3xw" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-
+                    <p>Accédez à votre espace perso afin de prendre un rendez-vous sur l'agenda. </p><br>
+                    <iframe width="560" height="315" src="https://www.youtube.com/embed/wjF7vP_cudg" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                    
                     <form class="bouton-basic"  action=connexion.php>
                         <input id="buttong" type="submit" value="Se connecter">
                     </form>
@@ -101,14 +101,14 @@ session_start();
                 <div id="art-droite">
                     <div>
                         <h3>Créer un compte</h3><br>
-                        <p>Chat & Co vous permet de chatter avec vos amis !</p><br>
+                        <p>L'Agenda vous permet de prendre un rendez-vous en ligne.</p><br>
                     </div>
                     
                     
                     <div class="mini-galerie">
-                        <img src="css/images/chat-1.jpg" alt="Chat screen">
-                        <img src="css/images/chat-2.jpg" alt="Chat screen">
-                        <img src="css/images/chat-3.png" alt="Chat screen">
+                        <img src="css/images/agenda-1.jpg" alt="agenda screen">
+                        <img src="css/images/agenda-2.jpg" alt="agenda screen">
+                        <img src="css/images/agenda-3.jpg" alt="agenda screen">
                         <br><br>
                     </div>
                     
