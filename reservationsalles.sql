@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1
--- Généré le : jeu. 18 juin 2020 à 01:31
+-- Généré le : jeu. 18 juin 2020 à 15:51
 -- Version du serveur :  10.4.11-MariaDB
--- Version de PHP : 7.4.4
+-- Version de PHP : 7.4.6
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -36,15 +36,24 @@ CREATE TABLE `reservations` (
   `id_utilisateur` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+-- --------------------------------------------------------
+
 --
--- Déchargement des données de la table `reservations`
+-- Structure de la table `utilisateurs`
 --
 
-INSERT INTO `reservations` (`id`, `titre`, `description`, `debut`, `fin`, `id_utilisateur`) VALUES
-(4, 'Test', 'Je test', '2020-06-17 18:00:00', '2020-06-17 19:00:00', 1),
-(5, 'Anniv', 'Anniversaire Rodolphe', '2020-06-18 16:00:00', '2020-06-18 17:00:00', 2),
-(7, 'Plateforme', 'Heure de cours', '2020-06-15 08:00:00', '2020-06-15 09:00:00', 1),
-(8, 'Plateforme', 'Heure de cours 2', '2020-06-15 09:00:00', '2020-06-15 10:00:00', 1);
+CREATE TABLE `utilisateurs` (
+  `id` int(11) NOT NULL,
+  `login` varchar(255) NOT NULL,
+  `password` varchar(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Déchargement des données de la table `utilisateurs`
+--
+
+INSERT INTO `utilisateurs` (`id`, `login`, `password`) VALUES
+(1, 'admin', 'admin');
 
 --
 -- Index pour les tables déchargées
@@ -57,6 +66,12 @@ ALTER TABLE `reservations`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Index pour la table `utilisateurs`
+--
+ALTER TABLE `utilisateurs`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- AUTO_INCREMENT pour les tables déchargées
 --
 
@@ -64,7 +79,13 @@ ALTER TABLE `reservations`
 -- AUTO_INCREMENT pour la table `reservations`
 --
 ALTER TABLE `reservations`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT pour la table `utilisateurs`
+--
+ALTER TABLE `utilisateurs`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

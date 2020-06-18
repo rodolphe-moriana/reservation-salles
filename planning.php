@@ -91,7 +91,7 @@ session_start();
                             $timeStart = strtotime("First sunday January 2020 + ".$numSemaine." Week +". ($jour+1) ." day");
                             $dateStart = date('Y-m-d',$timeStart);
                             $date=$dateStart.' '.$heure.':00';
-                            $request="SELECT R.*,U.login FROM `reservations` as R INNER JOIN utilisateurs as U ON R.id_utilisateur=U.id WHERE `debut`='$date'";
+                            $request="SELECT R.*,U.login FROM `reservationsalles` as R INNER JOIN utilisateurs as U ON R.id_utilisateur=U.id WHERE `debut`='$date'";
                             $query= mysqli_query($db,$request);
                                 if(mysqli_num_rows($query)!=0){
                                     $cont=mysqli_fetch_assoc($query);
